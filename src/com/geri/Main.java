@@ -29,7 +29,7 @@ public class Main {
         readCities();
         readEmployees();
         HttpServer server = HttpServer.create(new InetSocketAddress(8000), 0);
-        server.createContext("/employee/vacation", new MyHandler());
+        server.createContext("/api/employees/vacation", new MyHandler());
         server.setExecutor(null);
         server.start();
     }
@@ -79,6 +79,7 @@ public class Main {
             for (var entry : potentialLocations.entrySet()) {
                 Location currentLocation = entry.getValue();
                 Boolean isAccepted = validateCity(currentLocation.getName(), currentEmployee);
+                System.out.println(currentLocation.getName() + " " + isAccepted);
                 if (isAccepted) {
                     Double distance = calculateDistance(juhePuszta.getLatitude(),
                             juhePuszta.getLongitude(),
